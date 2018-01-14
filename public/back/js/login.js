@@ -40,7 +40,7 @@ $(function () {
     });
     $('form').on('success.form.bv',function(e){
         e.preventDefault();
-        console.log(11);
+        //console.log(11);
         $.ajax({
             type:'post',
             url:'/employee/employeeLogin',
@@ -50,12 +50,12 @@ $(function () {
                 if(re.success){
                     location.href = 'index.html';
                 }
-                console.log(re);
+                //console.log(re);
                 if(re.error == 1001){
-                    $('form').data('bootstrapValidator').updateStatus('username','INVALID','callback');
+                    $('form').data('bootstrapValidator').updateStatus('password','INVALID','callback');
                 }
                 if(re.error == 1000){
-                    $('form').data('bootstrapValidator').updateStatus('password','INVALID','callback');
+                    $('form').data('bootstrapValidator').updateStatus('username','INVALID','callback');
                 }
             }
 
