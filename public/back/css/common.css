@@ -21,10 +21,11 @@ html,body{
     width: 180px;
     height: 100%;
     background-color: #222d32;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     transition: all 1s;
+    z-index: 6;
 }
 .aside.current{
     left: -180px;
@@ -87,6 +88,7 @@ html,body{
 .main {
     height: 100%;
     padding-left: 180px;
+    padding-top: 70px;
     /*width: 100%;*/
     transition: all 1s;
 }
@@ -96,9 +98,18 @@ html,body{
 .main .header {
     height: 50px;
     background: #3c8dbc;
-    padding: 0 20px;
+    padding: 0 20px 0 200px;
     margin-bottom: 20px;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top:0;
+    transition: all 1s;
 }
+.main .header.current {
+    padding-left: 20px;
+}
+
 .main .header span {
     margin-top: 15px;
     color: white;

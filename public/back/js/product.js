@@ -1,13 +1,15 @@
 /**
- * Created by shan on 2018/1/13.
+ * Created by shan on 2018/1/14.
  */
 $(function () {
     var page = 1;
-    var pageSize = 5;
+    var pageSize = 2;
+    var arr = [];
+    //var imgStr = '';
     function render(){
         $.ajax({
             type:'get',
-            url:'/category/querySecondCategoryPaging',
+            url:'/product/queryProductDetailList',
             data:{
                 page:page,
                 pageSize:pageSize
@@ -61,7 +63,7 @@ $(function () {
     }
     render();
 
-    $('.btn-add').on('click',function(){
+    $('.btn-add').on('click', function () {
         $('#addModal').modal();
         $.ajax({
             type:'get',
@@ -75,54 +77,101 @@ $(function () {
                 $('.dropdown-menu').html(template('cateTpl',re));
             }
         })
+
     });
 
     $('.dropdown-menu').on('click','a', function () {
         $('.pickCate').text($(this).text());
-        var id = $(this).data('id');
-        $('.dropdown input').val(id);
-        $('form').data('bootstrapValidator').updateStatus('categoryId','VALID');
+        $('.dropdown input').val($(this).data('id'));
+        $('form').data('bootstrapValidator').updateStatus('brandId','VALID');
     });
 
-    $("#fileupload").fileupload({
-        dataType:"json",
-        //e：事件对象
-        //data：图片上传后的对象，通过e.result.picAddr可以获取上传后的图片地址
-        done:function (e, data) {
-            console.log(data.result.picAddr);
-            $('.img').attr('src',data.result.picAddr)
-                .next().val(data.result.picAddr);
-            $('form').data('bootstrapValidator').updateStatus('brandLogo','VALID');
+    $('#fileupload').fileupload({
+        dataType:'json',
+        done: function (e,data) {
+            arr.push(data.result);
+            if(arr.length > 3){
+                return;
+            }
 
+            if(arr.length === 3){
+                $('form').data('bootstrapValidator').updateStatus('brandLogo','VALID');
+            }else{
+                $('form').data('bootstrapValidator').updateStatus('brandLogo','INVALID');
+            }
+            $('.img').append('<img src="'+data.result.picAddr+'" width="100" height="100" alt="">');
         }
     });
 
     $('form').bootstrapValidator({
-        excluded: [],//不校验的内容
+        excluded:[],
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
             validating: 'glyphicon glyphicon-refresh'
         },
         fields:{
-            categoryId:{
-                validators: {
-                    notEmpty: {
-                        message: '请选择一级分类'
+            brandId:{
+                validators:{
+                    notEmpty:{
+                        message:'请选择二级分类'
                     }
                 }
             },
-            brandName:{
-                validators: {
-                    notEmpty: {
-                        message: '请输入二级分类名称'
+            proName:{
+                validators:{
+                    notEmpty:{
+                        message:'请输入商品的名称'
+                    }
+                }
+            },
+            proDesc:{
+                validators:{
+                    notEmpty:{
+                        message:'请输入商品的描述'
+                    }
+                }
+            },
+            num:{
+                validators:{
+                    notEmpty:{
+                        message:'请输入商品的库存'
+                    },
+                    regexp:{
+                        regexp:/^[1-9]\d*$/,
+                        message:'库存数据开头不为0'
+                    }
+                }
+            },
+            size:{
+                validators:{
+                    notEmpty:{
+                        message:'请输入商品的尺码(32-49)'
+                    },
+                    regexp:{
+                        regexp:/^\d{2}-\d{2}$/,
+                        message:'请输入商品的尺码(32-49)'
+                    }
+                }
+            },
+            oldPrice:{
+                validators:{
+                    notEmpty:{
+                        message:'请输入商品的原价'
+                    }
+                }
+            },
+            price:{
+                validators:{
+                    notEmpty:{
+                        message:'请输入商品的价格'
                     }
                 }
             },
             brandLogo:{
-                validators: {
-                    notEmpty: {
-                        message: '请上传图片'
+                validators:{
+                    notEmpty:{
+                        message:'请上传3张图片'
                     }
                 }
             }
@@ -131,10 +180,14 @@ $(function () {
 
     $('form').on('success.form.bv', function (e) {
         e.preventDefault();
+        var imgStr = '&picName1='+arr[0].picName+'&picAddr1='+arr[0].picAddr;
+        imgStr += '&picName2='+arr[1].picName+'&picAddr2='+arr[1].picAddr;
+        imgStr += '&picName3='+arr[2].picName+'&picAddr3='+arr[2].picAddr;
+        var dataStr = $('form').serialize()+imgStr;
         $.ajax({
             type:'post',
-            url:'/category/addSecondCategory',
-            data:$('form').serialize(),
+            url:'/product/addProduct',
+            data:dataStr,
             success: function (re) {
                 console.log(re);
                 if(re.success){
@@ -142,10 +195,11 @@ $(function () {
                     page = 1;
                     render();
                     $('form').data('bootstrapValidator').resetForm(true);
-                    $('.pickCate').text('请选择一级分类');
-                    $('.img').attr('src','images/none.png');
+                    $('.pickCate').text('请选择二级分类');
+                    $('.img img').remove();
                 }
             }
         })
     })
+
 });

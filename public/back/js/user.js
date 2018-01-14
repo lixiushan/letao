@@ -3,7 +3,7 @@
  */
 $(function () {
     var page = 1;
-    var pageSize = 5;
+    var pageSize = 10;
     render();
     function render(){
         $.ajax({
@@ -19,6 +19,38 @@ $(function () {
                 $('#paginator').bootstrapPaginator({
                     bootstrapMajorVersion:3,
                     currentPage:page,
+                    size:'small',
+                    useBootstrapTooltip: true,
+                    tooltipTitles: function (type, page, current) {
+                        switch (type){
+                            case 'first':
+                                return '首页';
+                            case 'prev':
+                                return '上一页';
+                            case 'next':
+                                return '下一页';
+                            case 'last':
+                                return '尾页';
+                            case 'page':
+                                return page;
+                        }
+                    },
+                    itemTexts: function (type, page, current) {
+                        //console.log(type);
+                        //console.log(page);
+                        switch (type){
+                            case 'first':
+                                return '首页';
+                            case 'prev':
+                                return '上一页';
+                            case 'next':
+                                return '下一页';
+                            case 'last':
+                                return '尾页';
+                            case 'page':
+                                return page;
+                        }
+                    },
                     totalPages: Math.ceil(re.total/re.size),
                     onPageClicked: function (a,b,c,p) {
                         page = p;
