@@ -71,7 +71,7 @@ $(function () {
                 pageSize:100
             },
             success: function (re) {
-                //console.log(re);
+                console.log(re);
                 $('.dropdown-menu').html(template('cateTpl',re));
             }
         })

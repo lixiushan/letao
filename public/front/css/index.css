@@ -1,0 +1,14 @@
+.main .banner {
+    margin-bottom: 10px;
+}
+.main .nav {
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+.main .nav li {
+    float: left;
+    width: 33.33%;
+}
+.main .nav img{
+    width: 100%;
+}
