@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+
+
+.history {
+  padding: 0 10px;
+  font-size: 12px;
+}
+.history .title {
+  margin-bottom: 5px;
+  color: #666;
+}
+.history .title .btn_empty{
+  height: 21px;
+  line-height: 21px;
+}
+.history ul {
+  border: 1px dashed red;
+  border-bottom: none;
+}
+.history .content li {
+  height: 30px;
+  line-height:30px;
+  padding-left: 10px;
+  border-bottom: 1px dashed red;
+}
+.content .btn_delete {
+  height: 30px;
+  line-height:30px;
+}

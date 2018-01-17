@@ -1,0 +1,55 @@
+
+.header .reload {
+  height: 100%;
+  width: 45px;
+  position:absolute;
+  top: 0;
+  text-align: center;
+  line-height: 45px;
+  color: white;
+}
+.header .reload {
+  right: 0;
+}
+.padding{
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+/*.proName {*/
+  /*height: 42px;*/
+  /*line-height: 42px;*/
+/*}*/
+/*div.price {*/
+  /*height: 42px;*/
+  /*line-height:42px;*/
+/*}*/
+div.price .price{
+  color: red;
+}
+div.price .oldPrice{
+  font-size: 12px;
+  color: #666;
+  text-decoration: line-through;
+}
+/*.size{*/
+  /*height: 42px;*/
+/*}*/
+.size span{
+  border: 1px solid #ccc;
+  padding:5px;
+  line-height: 42px;
+  background-color: #f5f5f5;
+  font-size: 12px;
+}
+.num {
+  height: 56px;
+  padding: 10px;
+  /*line-height: 56px;*/
+}
+.num span {
+  color: #666;
+  font-size: 12px;
+}
+.proDesc{
+  padding: 10px 10px;
+}

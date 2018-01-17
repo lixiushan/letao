@@ -108,3 +108,23 @@ html, body{
 .main .product span:last-child{
     text-decoration: line-through;
 }
+
+.main .search {
+    padding: 10px;
+}
+.search input {
+    height: 34px;
+    border: 1px solid #007aff;
+    font-size: 12px;
+    border-radius: 5px
+}
+.search button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 0 5px 5px 0;
+}
+.product {
+    padding-top: 10px;
+}
+
