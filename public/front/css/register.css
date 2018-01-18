@@ -1,0 +1,18 @@
+.mui-scroll{
+  padding: 10px;
+}
+input[name="vCode"]{
+  width: 65%;
+}
+.mui-input-row .mui-btn.btn-code{
+  width: 30%;
+  /*padding: 0;*/
+  height: 40px;
+  border: none;
+}
+.mui-input-row .mui-btn.btn-code.active{
+  background-color: #ccc;
+}
+.mui-input-row .btn-register{
+  width: 100%;
+}

@@ -87,6 +87,7 @@ html, body{
 }
 
 .main .product li {
+    /*height: 420px;*/
     float: left;
     width: 46%;
     border: 1px solid #ccc;

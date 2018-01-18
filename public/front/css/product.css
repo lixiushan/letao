@@ -41,6 +41,9 @@ div.price .oldPrice{
   background-color: #f5f5f5;
   font-size: 12px;
 }
+.size span.active{
+  background-color: #069;
+}
 .num {
   height: 56px;
   padding: 10px;
@@ -50,6 +53,28 @@ div.price .oldPrice{
   color: #666;
   font-size: 12px;
 }
+
 .proDesc{
   padding: 10px 10px;
+}
+.lt_container {
+  /*position: relative;*/
+}
+.cart{
+  background-color: #eee;
+  height: 55px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+  border-top: 1px solid red;
+}
+.cart .right {
+  height: 55px;
+  line-height: 55px;
+}
+.cart a{
+  font-size: 14px;
+  padding: 7px;
 }
